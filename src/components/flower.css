@@ -1,0 +1,132 @@
+.luxury-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #fdfaf7;
+  font-family: 'Playfair Display', serif;
+}
+
+.shop-header {
+  margin-bottom: 50px;
+  border-bottom: 1px solid #d4af37;
+  padding-bottom: 20px;
+}
+
+.shop-header h1 {
+  letter-spacing: 5px;
+  color: #1a1a1a;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-transform: none; 
+  font-size: 1.1rem;
+  color: #605B51; 
+  letter-spacing: 1px;
+  font-style: italic; 
+  display: block;
+}
+
+/* FORM CARD STYLING */
+.form-card {
+  background: white;
+  padding: 30px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.form-title {
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+}
+
+.form-field {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.form-field input, .form-field select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  border-radius: 0;
+}
+
+.luxury-btn {
+  width: 100%;
+  padding: 15px;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  letter-spacing: 2px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.luxury-btn:hover {
+  background: #d4af37; /* Turns gold on hover */
+  color: white;
+}
+
+/* IMAGE GRID STYLING */
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.grid-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.grid-item:hover img {
+  transform: scale(1.05);
+}
+
+.grid-item span {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 5px 15px;
+  font-size: 0.75rem;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+/* RESPONSIVE OVERRIDES */
+@media (max-width: 991px) {
+  .grid-item img {
+    height: 180px; /* Shortened for mobile view */
+  }
+  
+  .shop-header h1 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+  
+  .luxury-wrapper {
+    padding: 20px 10px;
+  }
+}
