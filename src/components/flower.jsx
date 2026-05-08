@@ -31,19 +31,19 @@ const FlowerShopForm = () => {
     }
 
     try {
-      //reder link server
+      // Render link server !
       const response = await axios.post("https://gusi-backend-expressnodeapp.onrender.com/submit", formData);
 
       if (response.status === 200 || response.status === 201) {
         alert("Success: Your luxury order has been successfully transmitted and recorded.");
         
-        // Reset form fields
         setFormData({ customerName: "", quantity: "", deliveryAddress: "", flowerType: "" });
       }
       
     } catch (err) {
       console.error("System Log:", err);
-      alert("Service Unavailable: We are unable to connect to the server at this time. Please ensure the backend service is operational and try again.");
+      const errorMsg = err.response?.data?.error || "Service Unavailable: We are unable to connect to the server.";
+      alert(errorMsg);
     }
   };
 
@@ -94,24 +94,47 @@ const FlowerShopForm = () => {
               <form onSubmit={handleSubmit}>
                 <div className="form-field">
                   <label>Customer Name</label>
-                  <input type="text" name="customerName" value={formData.customerName} onChange={handleChange} required />
+                  <input 
+                    type="text" 
+                    name="customerName" 
+                    value={formData.customerName} 
+                    onChange={handleChange} 
+                    required 
+                  />
                 </div>
                 <div className="form-field">
                   <label>Quantity</label>
-                  <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} required />
+                  <input 
+                    type="number" 
+                    name="quantity" 
+                    value={formData.quantity} 
+                    onChange={handleChange} 
+                    required 
+                  />
                 </div>
                 <div className="form-field">
                   <label>Delivery Address</label>
-                  <input type="text" name="deliveryAddress" value={formData.deliveryAddress} onChange={handleChange} required />
+                  <input 
+                    type="text" 
+                    name="deliveryAddress" 
+                    value={formData.deliveryAddress} 
+                    onChange={handleChange} 
+                    required 
+                  />
                 </div>
                 <div className="form-field">
                   <label>Select Arrangement</label>
-                  <select name="flowerType" value={formData.flowerType} onChange={handleChange} required>
+                  <select 
+                    name="flowerType" 
+                    value={formData.flowerType} 
+                    onChange={handleChange} 
+                    required
+                  >
                     <option value="">-- Choose Excellence --</option>
                     <option value="Juliet Rose">Juliet Rose</option>
-                    <option value="Lilies">Royal Lilies</option>
-                    <option value="Tulips">French Tulips</option>
-                    <option value="Sunflower">Golden Sun</option>
+                    <option value="Royal Lilies">Royal Lilies</option>
+                    <option value="French Tulips">French Tulips</option>
+                    <option value="Golden Sun">Golden Sun</option>
                   </select>
                 </div>
                 <button type="submit" className="luxury-btn">RESERVE ORDER</button>
