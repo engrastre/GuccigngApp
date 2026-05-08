@@ -2,6 +2,8 @@ import "./flower.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
+import axios from "axios"; 
+
 import julietRose from "../assets/J.jpg";
 import lilies from "../assets/L.jpg";
 import tulips from "../assets/T.jpg";
@@ -20,14 +22,29 @@ const FlowerShopForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if (!formData.flowerType) {
-      alert("Please select an arrangement.");
+      alert("Please select a flower arrangement to proceed.");
       return;
     }
-    console.log("Luxury Order Received:", formData);
-    setFormData({ customerName: "", quantity: "", deliveryAddress: "", flowerType: "" });
+
+    try {
+      //reder link server
+      const response = await axios.post("https://gusi-backend-expressnodeapp.onrender.com/submit", formData);
+
+      if (response.status === 200 || response.status === 201) {
+        alert("Success: Your luxury order has been successfully transmitted and recorded.");
+        
+        // Reset form fields
+        setFormData({ customerName: "", quantity: "", deliveryAddress: "", flowerType: "" });
+      }
+      
+    } catch (err) {
+      console.error("System Log:", err);
+      alert("Service Unavailable: We are unable to connect to the server at this time. Please ensure the backend service is operational and try again.");
+    }
   };
 
   return (
@@ -40,7 +57,7 @@ const FlowerShopForm = () => {
       <Container fluid="md">
         <Row className="gy-4 align-items-start"> 
           
-          {/* IMAGE GRID*/}
+          {/* IMAGE GRID */}
           <Col xs={12} lg={{ span: 7, order: 2 }}>
             <Row className="g-3">
               <Col xs={6}>
@@ -70,7 +87,7 @@ const FlowerShopForm = () => {
             </Row>
           </Col>
 
-          {/* FORM CARD*/}
+          {/* FORM CARD */}
           <Col xs={12} lg={{ span: 5, order: 1 }}>
             <section className="form-card shadow-sm">
               <h2 className="form-title">Place Your Order</h2>
